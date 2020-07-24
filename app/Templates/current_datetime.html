@@ -1,0 +1,190 @@
+{% load static %}
+<html>
+  <head onload="submitPayuForm()">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Payment Gateway</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{%static 'css/navbar1.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+  <script type="text/javascript">
+    var hash = "{{ hashh }}";
+    function submitPayuForm() {
+      if(hash =='') {
+        return;
+      }
+      var payuForm = document.forms.payuForm;
+      payuForm.submit();
+    }
+  </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="{% url 'portal' %}">IMO Portal</a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="float:right">
+                        <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/signup"><i class="fas fa-university"></i>Add SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/display"><i class="far fa-list-alt"></i>List of SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/gateway"><i class="fas fa-calculator"></i>Taxes</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/install"><i class="far fa-address-book"></i>SHG Installment</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="fas fa-business-time"></i>Financial Position</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="far fa-chart-bar"></i>Statistics</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/"><i class="far fa-user-circle"></i>Logout</a>
+                </li>
+
+            </ul>
+    </nav>
+
+
+
+  <div class="container"><br/>
+    <h2 style="text-align:center">PayU Form<h6 style="text-align:right;color:red">* are mandatory</h6></h2>
+    {% if error %}
+
+      <span style="color:red">Please fill all mandatory fields.</span>
+      <br/>
+      <br/>
+      {% endif %}
+     
+      <form action={{ action }} method="post" name="payuForm">
+        {% csrf_token %}
+      <input type="hidden" name="key" value="{{ MERCHANT_KEY }}" />
+      <input type="hidden" name="hash_string" value="{{ hash_string }}" />
+      <input type="hidden" name="hash" value="{{ hashh }}"/>
+       <input type="hidden" name="posted" value="{{ posted }}"/>
+      <input type="hidden" name="txnid" value="{{ txnid }}" />
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Amount <b><span style="color:red">*<span style="color:white">hello</span></span></b>          :      </label>
+                <input name="amount" class="form-control" value="{{ posted.amount|default:'' }}" requiured/>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">First Name: <b><span style="color:red">*<span style="color:white">hlhho</span></span></b> :  </label>
+                <input name="firstname" class="form-control" id="firstname" value="{{ posted.firstname|default:'' }}" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Email <b><span style="color:red">*<span style="color:white">dddddo</span> </span></b> :      </label>
+                <input name="email" class="form-control" id="email" value="{{ posted.email|default:'' }}" required/>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Phone Number <b><span style="color:red">* <span style="color:white">h</span></span></b> :  </label>
+                <input name="phone" class="form-control" value="{{ posted.phone|default:'' }}" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="input-group mb-12">
+            <label class="p-2">Product Info <b><span style="color:red">*<span style="color:white">h</span> </span></b> :      </label>
+                <input name="phone" class="form-control" value="{{ posted.phone|default:'' }}" required/>
+            </div>
+          </div>
+        </div>
+
+                <input type="hidden" name="surl" class="form-control" value="http://127.0.0.1:8000/portal/gateway/success"  />
+
+                <input type="hidden" name="furl" class="form-control" value="http://127.0.0.1:8000/portal/gateway/failure"  />
+
+        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Last Name      <span style="color:white">hlsd</span> :</label>
+                <input name="lastname" class="form-control" id="lastname" value="{{ posted.lastname }}" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Cancel URI <span style="color:white">hsssslo</span> : </label>
+                <input name="curl" class="form-control" value="" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Address1  <span style="color:white">hlofff</span>   : </label>
+                <input name="address1" class="form-control" value="{{ posted.address1 }}" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Address2 <span style="color:white">hlssssoss</span>: </label>
+                <input name="address2" class="form-control" value="{{ posted.address2 }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">City <span style="color:white">hlsssssssso</span> :</label>
+                <input name="city" class="form-control" value="{{ posted.city }}" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">State <span style="color:white">hlsssssssssso</span>  :</label>
+                <input name="state" class="form-control" value="{{ posted.state }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Country <span style="color:white">hlssso</span> :</label>
+                <input name="country" class="form-control" value="{{ posted.country }}" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-6">
+            <label class="p-2">Zipcode  <span style="color:white">hosssssss</span> :</label>
+                <input name="zipcode" class="form-control" value="{{ posted.zipcode }}" />
+            </div>
+          </div>
+        </div>
+
+
+        <br/>
+        <div class="text-center">
+            <button type="submit"  class="btn btn-primary btn-lg" style="text-align:center" >Submit</button>
+      </div>
+    </form>
+
+  </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"/>
+  </body>
+</html>
+

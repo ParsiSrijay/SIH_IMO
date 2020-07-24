@@ -1,0 +1,116 @@
+{% load static %}
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Approve Loan</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+    <link href="{%static 'css/navbar1.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body >
+
+		<nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="{% url 'portal' %}">IMO Portal</a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="float:right">
+                        <a class="nav-brand navbar-logo" href="signup"><i class="fas fa-university"></i>Add SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="display"><i class="far fa-list-alt"></i>List of SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/gateway"><i class="fas fa-calculator"></i>Taxes</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="install"><i class="far fa-address-book"></i>SHG Installment</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="fas fa-business-time"></i>Financial Position</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="far fa-chart-bar"></i>Statistics</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/logout"><i class="far fa-user-circle"></i>Logout</a>
+                </li>
+
+            </ul>
+    </nav>
+        <div class="container">
+        <br/>
+  <h2 style="text-align:center">APPROVE SHG LOAN<h6 style="text-align:right;color:red">* are mandatory</h6></h2>
+
+            <div class="alert alert-info alert-dismissible">
+                <!--<a href="#" class="close" data-dismiss="alert" aria-label="close" >&times;</a>-->
+                <h5><span id="test" ><b>{{content}}</b></span></h5>
+            </div>
+
+  <form action="" method="POST" >
+    {% csrf_token %}
+      <table class="table table-borderless">
+        <thead>
+        </thead>
+        <tr>
+            <td><label>Name of SHG <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control"   value="" name="name" required/></td>
+            <td><label>Activity Name <b><span style="color:red">* </span></b> :  </label>
+                <select type="text" class="form-control" value="" name="act" required>
+                    <option>Tailoring</option>
+                    <option>Handicraft</option>
+                    <option>Handloom</option>
+                    <option>Agriculture</option>
+                    <option>Diary Activities</option>
+                    <option>Food Processing</option>
+                    <option>Other</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Loan Amount (in Lakhs) <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control" placeholder="" value="" name="amt" required/></td>
+            <td><label>No. of women beneficiaries <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control"  placeholder="" value="" name="wb" required/></td>
+        </tr>
+          <tr>
+              <td><label>Registration_id_imo <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control" placeholder="" value="" name="reg" required/></td>
+              <td><label>Address <b><span style="color:red">* </span></b> :  </label>
+                <input type="textarea" class="form-control" placeholder="" value="" name="location" required/></td>
+        </tr>
+          <tr>
+              <td><label>Time period(in years) <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control" placeholder="" value="" name="tp" required/></td>
+              <td><label>Rate of Interest <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control" placeholder="" value="" name="rate" required/></td>
+        </tr>
+          <tr>
+              <td><label>Years In Current Job <b><span style="color:red">* </span></b> :  </label>
+                <input type="text" class="form-control" placeholder="" value="" name="ycj" required/></td>
+              <td><label>Previous Debt <b><span style="color:red">* </span></b> :  </label>
+                <select type="text" class="form-control"  placeholder="" value="" name="pd" required>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+              </td>
+        </tr>
+      </table>
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary mb-2" style="text-align:center" >Can loan be approved?</button>
+      </div>
+</form>
+</div>
+
+
+
+</body>
+</html>
