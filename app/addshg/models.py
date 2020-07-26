@@ -28,3 +28,13 @@ class LoanRegister(models.Model):
     LoanRepayment=models.IntegerField()
     Interest=models.IntegerField()
     ClosingBalance=models.IntegerField()
+    RegIMO=models.CharField(max_length=10,default="")
+
+class Loan(models.Model):
+    Name = models.CharField(max_length=20, default="")
+    Date = models.DateTimeField(default=timezone.now)
+    OpeningBalance = models.IntegerField()
+    LoanRepayment = models.IntegerField()
+    Interest = models.IntegerField()
+    ClosingBalance = models.IntegerField()
+    RegIMO = models.CharField(max_length=10, default="")

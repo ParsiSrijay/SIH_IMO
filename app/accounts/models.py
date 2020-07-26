@@ -9,3 +9,4 @@ class ledger(models.Model):
     TransctionType=models.CharField(max_length=50)
     Particulars=models.CharField(max_length=20)
     Amount=models.IntegerField()
+    RegIMO=models.CharField(max_length=10,default="")

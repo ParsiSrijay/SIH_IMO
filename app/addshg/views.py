@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 import joblib
 import numpy as np
-from addshg.models import shg,installments,LoanRegister
+from addshg.models import shg,installments,Loan
 
 
 def signup(request):
@@ -46,31 +46,22 @@ def signup(request):
             x=x.reshape(1,-1)
             y_test=model.predict(x)
             if y_test[0]==1:
-                s=shg(Name=name,Activity=action,Amount=amt,Woman_beneficiaries=woman,Location=location,TimePeriod=tp,Rate=rate,Registration_id_imo=reg)
+                s=shg(Name=name,Activity=action,Amount=amt,Woman_beneficiaries=woman,Location=location,TimePeriod=tp,Rate=rate,Registration_id_imo=request.user.username)
                 s.save()
-                lr = LoanRegister(Name=name, OpeningBalance=amt, LoanRepayment=0, Interest=0, ClosingBalance=amt)
+                lr = Loan(Name=name, OpeningBalance=amt, LoanRepayment=0, Interest=0, ClosingBalance=amt,RegIMO=request.user.username)
                 lr.save()
                 return render(request,'approveSHG.html',{'content':"Loan Approved Successfully!"})
             else:
                 return render(request,'approveSHG.html',{'content': "Loan Rejected!!"})
         else:
-            return render(request,'approveSHG.html')
+            return render(request,'approveSHG.html',{"reg":request.user.username})
 
 
 def display(request):
     if not request.user.is_authenticated:
         return redirect('http://127.0.0.1:8000/login')
-    if request.method=='POST':
-        reg=request.POST['reg']
-        list_shg=shg.objects.values('Name','Amount','Activity').filter(Registration_id_imo=reg)
-        return render(request,"displaySHG.html",{'shg':list_shg})
-    else:
-        list_id=shg.objects.values('Registration_id_imo')
-        id=[]
-        for i in list_id:
-            if i not in id:
-                id.append(i)
-        return render(request,"displayid.html",{'ids':id})
+    list_shg=shg.objects.values('Name','Amount','Activity').filter(Registration_id_imo=request.user.username)
+    return render(request,"displaySHG.html",{'shg':list_shg})
 
 
 def payinstallments(request):
@@ -90,25 +81,25 @@ def payinstallments(request):
         closebal=openbal-int(loaninst)+interest
         s.Amount=closebal
         s.save()
-        t = installments(Name=name, Installments=int(inst), Registration_id_imo=reg)
+        t = installments(Name=name, Installments=int(inst), Registration_id_imo=request.user.username)
         t.save()
-        lr=LoanRegister(Name=name,OpeningBalance=openbal,LoanRepayment=inst,Interest=interest,ClosingBalance=closebal)
+        lr=Loan(Name=name,OpeningBalance=openbal,LoanRepayment=inst,Interest=interest,ClosingBalance=closebal,RegIMO=request.user.username)
         lr.save()
         return redirect('http://127.0.0.1:8000/portal/display')
     else:
-        return render(request,'installments.html')
+        return render(request,'installments.html',{"reg":request.user.username})
 
 def dispLR(request):
     if not request.user.is_authenticated:
         return redirect('http://127.0.0.1:8000/login')
-    name_list = LoanRegister.objects.raw('SELECT DISTINCT Name,id from addshg_loanregister')
+    name_list = Loan.objects.raw('SELECT DISTINCT Name,id from addshg_loan WHERE RegIMO=%s',[request.user.username])
     l = []
     for i in name_list:
         if i.Name not in l:
             l.append(i.Name)
     if request.method=="POST":
         name=request.POST['name']
-        lr=LoanRegister.objects.all().filter(Name=name)
+        lr=Loan.objects.all().filter(Name=name,RegIMO=request.user.username)
         return render(request,"form.html",{"shg":lr,"name_list":l})
     else:
         return render(request,"form.html",{"name_list":l})
