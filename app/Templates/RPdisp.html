@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" height="100%" width="100%">
+    <tr>
+        <th colspan="2">Receipts</th>
+        <th colspan="2">Payments</th>
+    </tr>
+    <tr>
+        <td>Opening Balance</td>
+        <td>{{RP.ob}}</td>
+        <td>SHG Loans</td>
+        <td>{{loan.shgl}}</td>
+    </tr>
+    <tr>
+        <td>Membership Fees</td>
+        <td>{{RP.mf}}</td>
+        <td>Fees And Charges</td>
+        <td>{{PT.fac}}</td>
+    </tr>
+    <tr>
+        <td>Fines</td>
+        <td>{{RP.fines}}</td>
+        <td>Salaries</td>
+        <td>{{PT.sal}}</td>
+    </tr>
+    <tr>
+        <td>RMK Funds</td>
+        <td>{{RP.rf}}</td>
+        <td>Admin Expenses</td>
+        <td>{{PT.ae}}</td>
+    </tr>
+    <tr>
+        <td>Principal</td>
+        <td>{{RPAmt.princ}}</td>
+        <td>Stationary</td>
+        <td>{{PT.sta}}</td>
+    </tr>
+    <tr>
+        <td>Interests</td>
+        <td>{{RPAmt.interest}}</td>
+        <td>Miscellaneous</td>
+        <td>{{PT.ms}}</td>
+    </tr>
+    <tr>
+        <td>Miscellaneous</td>
+        <td>{{RP.ms}}</td>
+        <td>Closing Balance</td>
+        <td>{{PT.cb}}</td>
+    </tr>
+    <tr>
+        {%if excess1%}
+            <td></td>
+            <td></td>
+            <td>Excess In Receipts</td>
+            <td>{{excess1}}</td>
+        {%else%}
+            <td>Excess in Payments</td>
+            <td>{{excess2}}</td>
+            <td></td>
+            <td></td>
+        {%endif%}
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>{{bal}}</td>
+        <td>Total</td>
+        <td>{{bal}}</td>
+    </tr>
+</table>
+</body>
+</html>

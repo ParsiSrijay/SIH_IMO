@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" height="100%" width="100%">
+    <tr>
+        <th colspan="2">Expenditure</th>
+        <th colspan="2">Income</th>
+    </tr>
+    <tr>
+
+        <td>Fees And Charges</td>
+        <td>{{PT.fac}}</td>
+        <td>Membership Fees</td>
+        <td>{{RP.mf}}</td>
+    </tr>
+    <tr>
+
+        <td>Salaries</td>
+        <td>{{PT.sal}}</td>
+        <td>Fines</td>
+        <td>{{RP.fines}}</td>
+    </tr>
+    <tr>
+
+        <td>Admin Expenses</td>
+        <td>{{PT.ae}}</td>
+        <td>Interests</td>
+        <td>{{RPAmt.interest}}</td>
+    </tr>
+    <tr>
+
+        <td>Miscellaneous</td>
+        <td>{{PT.ms}}</td>
+        <td>Miscellaneous</td>
+        <td>{{RP.ms}}</td>
+    </tr>
+    <tr>
+        {%if excess1%}
+
+            <td>Excess In Income</td>
+            <td>{{excess1}}</td>
+            <td></td>
+            <td></td>
+        {%else%}
+            <td></td>
+            <td></td>
+            <td>Excess in expenditure</td>
+            <td>{{excess2}}</td>
+
+        {%endif%}
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>{{bal}}</td>
+        <td>Total</td>
+        <td>{{bal}}</td>
+    </tr>
+</table>
+</body>
+</html>

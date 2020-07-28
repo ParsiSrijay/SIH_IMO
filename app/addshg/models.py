@@ -12,6 +12,7 @@ class shg(models.Model):
     TimePeriod = models.DecimalField(max_digits=4, decimal_places=2)
     Rate = models.DecimalField(max_digits=4, decimal_places=2)
     Registration_id_imo = models.CharField(max_length=10)
+    BalanceAmount=models.IntegerField(default=0)
 
 
 class installments(models.Model):

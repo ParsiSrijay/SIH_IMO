@@ -46,7 +46,7 @@ def signup(request):
             x=x.reshape(1,-1)
             y_test=model.predict(x)
             if y_test[0]==1:
-                s=shg(Name=name,Activity=action,Amount=amt,Woman_beneficiaries=woman,Location=location,TimePeriod=tp,Rate=rate,Registration_id_imo=request.user.username)
+                s=shg(Name=name,Activity=action,Amount=amt,BalanceAmount=amt,Woman_beneficiaries=woman,Location=location,TimePeriod=tp,Rate=rate,Registration_id_imo=request.user.username)
                 s.save()
                 lr = Loan(Name=name, OpeningBalance=amt, LoanRepayment=0, Interest=0, ClosingBalance=amt,RegIMO=request.user.username)
                 lr.save()
@@ -60,7 +60,7 @@ def signup(request):
 def display(request):
     if not request.user.is_authenticated:
         return redirect('http://127.0.0.1:8000/login')
-    list_shg=shg.objects.values('Name','Amount','Activity').filter(Registration_id_imo=request.user.username)
+    list_shg=shg.objects.values('Name','BalanceAmount','Activity').filter(Registration_id_imo=request.user.username)
     return render(request,"displaySHG.html",{'shg':list_shg})
 
 
@@ -79,7 +79,7 @@ def payinstallments(request):
         time=s.TimePeriod
         interest= (openbal*rate*time)/100
         closebal=openbal-int(loaninst)+interest
-        s.Amount=closebal
+        s.BalanceAmount=closebal
         s.save()
         t = installments(Name=name, Installments=int(inst), Registration_id_imo=request.user.username)
         t.save()

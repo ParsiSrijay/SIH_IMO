@@ -1,0 +1,171 @@
+{% load static %}
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Financial Position</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+
+    <link href="{%static 'css/navbar1.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+</script>
+
+		<nav class="navbar navbar-expand-lg navbar-mainbg fixed-top">
+        <a class="navbar-brand navbar-logo" href="{% url 'portal' %}">IMO Portal</a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="float:right">
+                        <a class="nav-brand navbar-logo" href="signup"><i class="fas fa-university"></i>Add SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="display"><i class="far fa-list-alt"></i>List of SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/gateway"><i class="fas fa-calculator"></i>Taxes</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="install"><i class="far fa-address-book"></i>SHG Installment</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="financial"><i class="fas fa-business-time"></i>Financial Position</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="far fa-chart-bar"></i>Statistics</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/"><i class="far fa-user-circle"></i>Logout</a>
+                </li>
+
+            </ul>
+    </nav>
+
+
+        <br/><br/><br/>
+            <div class="row">
+  <div class="col-sm-2">
+      <div class="list-group">
+
+          <li class="list-group-item">
+            <button type="button" class="btn text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cashbook
+              </button>
+              <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <a class="dropdown-item" href="#">Add</a>
+                <a class="dropdown-item" href="#">Display</a>
+              </div>
+          </li>
+          <li class="list-group-item">
+            <button type="button" class="btn text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                General Ledger
+              </button>
+              <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <a class="dropdown-item" href="#">Add</a>
+                <a class="dropdown-item" href="#">Display</a>
+              </div>
+          </li>
+
+          <li class="list-group-item">
+            <button type="button" class="btn text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Loan Register
+              </button>
+              <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <a class="dropdown-item" href="#">Add</a>
+                <a class="dropdown-item" href="#">Display</a>
+              </div>
+          </li>
+          <li class="list-group-item">
+            <button type="button" class="btn text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Receipts and Payments
+              </button>
+              <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <a class="dropdown-item" href="#">Add</a>
+                <a class="dropdown-item" href="#">Display</a>
+              </div>
+          </li>
+
+</div>
+  </div>
+                <div class="col-sm-9">
+
+<!--change here-->
+
+                       <div class="container">
+
+  <h2 style="text-align:center">Payments</h2>
+
+            <div class="alert alert-info alert-dismissible">
+                <!--<a href="#" class="close" data-dismiss="alert" aria-label="close" >&times;</a>-->
+                <h5><span id="test" ><b>{{content}}</b></span></h5>
+            </div>
+
+  <form action="" method="POST" >
+    {% csrf_token %}
+      <table class="table table-borderless">
+        <thead>
+        </thead>
+        <tr>
+            <td><label>Shgloans<b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="Shgloans" /></td>
+        </tr>
+        <tr>
+
+            <td><label> Feesandcharges<b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="Feesandcharges" />
+            </td>
+        </tr>
+        
+        <tr>
+            <td><label>Salaries <b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control"  placeholder="" value="" name="Salaries" /></td>
+        </tr>
+          <tr>
+              <td><label>Adminexpenses <b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="Adminexpenses" /></td>
+          </tr>
+          <tr>
+              <td><label>Stationery <b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="Stationery" /></td>
+          </tr>
+          <tr>
+              <td><label>Micellaneous <b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="Micellaneous" /></td>
+          </tr>
+          <tr>
+              <td><label>Closingbal <b><span style="color:red"> </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="closingbal" /></td>
+          </tr>
+
+
+      </table>
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary mb-2" style="text-align:center" >Submit</button>
+      </div>
+</form>
+</div>
+
+
+        </div>
+
+
+
+
+                    <!--change here-->
+            </div>
+
+
+</body>
+</html>

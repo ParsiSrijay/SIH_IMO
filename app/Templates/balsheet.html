@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" height="100%" width="100%">
+    <tr>
+        <th colspan="2">Liabilities</th>
+        <th colspan="2">Assests</th>
+    </tr>
+    <tr>
+        <td>SHG Loans</td>
+        <td>{{loan.shgl}}</td>
+        <td>Opening Balance</td>
+        <td>{{RP.ob}}</td>
+    </tr>
+    <tr>
+        <td>Stationary</td>
+        <td>{{PT.sta}}</td>
+        <td>RMK Funds</td>
+        <td>{{RP.rf}}</td>
+    </tr>
+    <tr>
+        <td>Closing Balance</td>
+        <td>{{PT.cb}}</td>
+        <td>Principal</td>
+        <td>{{RPAmt.princ}}</td>
+    </tr>
+    <tr>
+        {%ifequal c 1 %}
+            <td>Surpluss in Receipts</td>
+            <td>{{ex1}}</td>
+            <td></td>
+            <td></td>
+        {%else%}
+            <td></td>
+            <td></td>
+            <td>Surpluss in Payments</td>
+            <td>{{ex2}}</td>
+        {%endifequal%}
+    </tr>
+    <tr>
+        {%ifequal d 1 %}
+            <td>Surpluss in Expenditure</td>
+            <td>{{ex4}}</td>
+            <td></td>
+            <td></td>
+        {%else%}
+            <td></td>
+            <td></td>
+            <td>Surpluss in Income</td>
+            <td>{{ex3}}</td>
+        {%endifequal%}
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>{{cap_amt}}</td>
+        <td>Total</td>
+        <td>{{assests_total}}</td>
+    </tr>
+
+</table>
+</body>
+</html>
