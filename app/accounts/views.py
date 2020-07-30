@@ -205,4 +205,32 @@ def BalanceSheet(request):
         cap=cap+ex4
     else:
         assests=assests+ex3
-    return render(request,"balsheet.html",{"RP": total, "RPAmt": total_amt, "PT": pay_total,"cap_amt":cap,"assests_total":assests,"ex1":ex1,"ex2":ex2,"ex3":ex3,"ex4":ex4,"c":c,"d":d})
+    return render(request,"balsheet.html",{"loan":total_loan,"RP": total, "RPAmt": total_amt, "PT": pay_total,"cap_amt":cap,"assests_total":assests,"ex1":ex1,"ex2":ex2,"ex3":ex3,"ex4":ex4,"c":c,"d":d})
+
+def FinRecords(request):
+    return render(request,"financial_index.html")
+
+def CashAccountDisp(request):
+    AccountName = "Cash"
+    Account = ledger.objects.all().filter(AccountName=AccountName, RegIMO=request.user.username)
+    bal_debit = ledger.objects.filter(AccountName=AccountName, TransctionType="Debit",
+                                      RegIMO=request.user.username).aggregate(debit=Sum('Amount'))
+    bal_credit = ledger.objects.filter(AccountName=AccountName, TransctionType="Credit",
+                                       RegIMO=request.user.username).aggregate(credit=Sum('Amount'))
+    d = 0
+    c = 0
+    print(bal_debit)
+    debit = bal_debit['debit']
+    credit = bal_credit['credit']
+    if credit == None:
+        credit = 0
+    if debit == None:
+        debit = 0
+    total = max(debit, credit)
+    if debit > credit:
+        d = debit - credit
+        return render(request, 'dispLedger.html',
+                      {'account': Account, 'debit': d, 'total': total})
+    else:
+        c = credit - debit
+        return render(request, 'dispLedger.html', {'account': Account, 'credit': c, 'total': total})

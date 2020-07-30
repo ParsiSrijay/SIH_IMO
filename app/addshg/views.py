@@ -8,6 +8,7 @@ from addshg.models import shg,installments,Loan
 def signup(request):
         if not request.user.is_authenticated:
             return redirect('http://127.0.0.1:8000/login')
+        user=request.user.username
         if request.method == 'POST':
             name=request.POST['name']
             act=request.POST['act']
@@ -50,11 +51,11 @@ def signup(request):
                 s.save()
                 lr = Loan(Name=name, OpeningBalance=amt, LoanRepayment=0, Interest=0, ClosingBalance=amt,RegIMO=request.user.username)
                 lr.save()
-                return render(request,'approveSHG.html',{'content':"Loan Approved Successfully!"})
+                return render(request,'approveSHG.html',{'content':"Loan Approved Successfully!","reg":user})
             else:
-                return render(request,'approveSHG.html',{'content': "Loan Rejected!!"})
+                return render(request,'approveSHG.html',{'content': "Loan Rejected!!","reg":user})
         else:
-            return render(request,'approveSHG.html',{"reg":request.user.username})
+            return render(request,'approveSHG.html',{"reg":user})
 
 
 def display(request):
@@ -73,7 +74,7 @@ def payinstallments(request):
         inst=request.POST['installments']
         reg=request.POST['reg']
         s=shg.objects.get(Name=name,Registration_id_imo=reg)
-        openbal=s.Amount
+        openbal=s.BalanceAmount
         loaninst=inst
         rate=s.Rate/12
         time=s.TimePeriod
@@ -103,3 +104,5 @@ def dispLR(request):
         return render(request,"form.html",{"shg":lr,"name_list":l})
     else:
         return render(request,"form.html",{"name_list":l})
+
+

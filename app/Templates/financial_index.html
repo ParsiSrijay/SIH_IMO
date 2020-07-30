@@ -1,0 +1,199 @@
+{% load static %}
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Financial Position</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+
+    <link href="{%static 'css/navbar1.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+</script>
+
+		<nav class="navbar navbar-expand-lg navbar-mainbg fixed-top">
+        <a class="navbar-brand navbar-logo" href="{% url 'portal' %}">IMO Portal</a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="float:right">
+                        <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/signup"><i class="fas fa-university"></i>Add SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/display"><i class="far fa-list-alt"></i>List of SHG</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/gateway"><i class="fas fa-calculator"></i>Taxes</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/portal/install"><i class="far fa-address-book"></i>SHG Installment</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/acc/"><i class="fas fa-business-time"></i>Financial Position</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="#"><i class="far fa-chart-bar"></i>Statistics</a>
+                </li>
+                <li class="nav-item" style="float:right">
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/"><i class="far fa-user-circle"></i>Logout</a>
+                </li>
+
+            </ul>
+    </nav>
+
+
+        <br/><br/><br/><br/><h2 style="text-align:center;color:black">Financial Position</h2><br/>
+<div class="container">
+            <div class="row">
+                <div class="col-sm-13">
+
+<!--change here-->
+        <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <b>Cashbook</b>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        A cash book is a financial journal that contains all cash receipts and disbursements, including bank deposits and withdrawals. Entries in the cash book are then posted into the general ledger.
+      <br/><br/>
+          <div class="row">
+              <div class="col-sm-12"><a href="http://127.0.0.1:8000/acc/cashAcc" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <b>General Ledger</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+
+A general ledger is a bookkeeping ledger that serves as a central repository for accounting data transferred from all subledgers like accounts payable, accounts receivable, cash management, fixed assets, purchasing and projects.
+      <br/><br/>
+          <div class="row">
+              <div class="col-sm-4"><a href="http://127.0.0.1:8000/acc/first" class="btn btn-primary btn-block btn-sm" role="button">Add  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+              <div class="col-sm-4"><a href="http://127.0.0.1:8000/acc/edit" class="btn btn-primary btn-block btn-sm" role="button">Edit  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+                <div class="col-sm-4"><a href="http://127.0.0.1:8000/acc/display" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <b>Loan Register</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+          A journal where all lending institutions record all of their outstanding loans in chronological order. They are used to track the maturity of all loans so that the bank's officers can notify their customers when their loans are due, some banks use this system to get additional business.
+      <br/><br/>
+          <div class="row">
+                <div class="col-sm-12"><a href="http://127.0.0.1:8000/portal/dispLR" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+            <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <b>Receipts and Payments</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+          The receipts and payments account summarizes receipts and payments made by a non-trading concern during a particular period of time (usually one year). Its is used to prepare income and expenditure account of non-trading concerns.
+      <br/><br/>
+          <div class="row">
+              <div class="col-sm-6"><a href="http://127.0.0.1:8000/acc/receipt" class="btn btn-primary btn-block btn-sm" role="button">Add  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+                <div class="col-sm-6"><a href="http://127.0.0.1:8000/acc/receipt/display" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+            <div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
+            <b>Income And Expenditure</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+      <div class="card-body">
+          The Income and Expenditure Account is a summary of all items of incomes and expenses which relate to the ongoing accounting year. It is prepared with the objective of finding out the surplus or deficit arising out of current incomes over current expenses.
+      <br/><br/>
+          <div class="row">
+                <div class="col-sm-12"><a href="http://127.0.0.1:8000/acc/iedisp" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+            <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseFour">
+            <b>Balance Sheet</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+          A balance sheet is a financial statement that reports a company's assets, liabilities and shareholders' equity. The balance sheet is one of the three (income statement and statement of cash flows being the other two) core financial statements used to evaluate a business.
+      <br/><br/>
+          <div class="row">
+
+                <div class="col-sm-12"><a href="http://127.0.0.1:8000/acc/balsheet" class="btn btn-primary btn-block btn-sm" role="button">Display  <i class='fas fa-long-arrow-alt-right'></i></a></div>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+        </div>
+
+                <!--change here-->
+            </div>
+        </div>
+</div>
+
+</body>
+</html>
