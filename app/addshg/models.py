@@ -13,6 +13,7 @@ class shg(models.Model):
     Rate = models.DecimalField(max_digits=4, decimal_places=2)
     Registration_id_imo = models.CharField(max_length=10)
     BalanceAmount=models.IntegerField(default=0)
+    phno=models.IntegerField(max_length=10,default=0)
 
 
 class installments(models.Model):

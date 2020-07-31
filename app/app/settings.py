@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'gateway.apps.GatewayConfig',
     'accounts.apps.AccountsConfig',
     'addshg.apps.AddshgConfig',
+    'stats.apps.StatsConfig',
     'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',

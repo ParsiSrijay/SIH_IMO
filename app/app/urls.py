@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('portal/',include('addshg.urls')),
     path('portal/gateway/',include('gateway.urls')),
-    path('acc/',include('accounts.urls'))
+    path('acc/',include('accounts.urls')),
+    path('stats/',include('stats.urls')),
 ]

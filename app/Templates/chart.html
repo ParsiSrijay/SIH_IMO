@@ -1,0 +1,489 @@
+{% extends 'base.html' %}
+
+{% block title %}club ranking{% endblock title %}
+
+{% block scripts %}
+<div class="row">x
+<div class="chart-container" style="position:relative;height:20vh; width:40vw">
+  <canvas id="myChart"></canvas>
+</div>
+<div class="chart-container" style="position:relative;top:0px;left:650px;height:20vh; width:40vw">
+  <canvas id="chart2"></canvas>
+</div>
+  </div>
+<div class="row">
+<div class="chart-container" style="position:relative;top:100px;height:20vh; width:40vw">
+  <canvas id="chart3"></canvas>
+</div>
+<div class="chart-container" style="position:relative;top:100px;left:650px;height:20vh; width:40vw">
+  <canvas id="chart4"></canvas>
+</div>
+</div>
+<div class="row">
+  <div class="chart-container" style="position:relative;top:100px;height:20vh; width:40vw">
+  <canvas id="chart5"></canvas>
+  </div>
+    <div class="chart-container" style="position:relative;top:100px;left:650px;height:20vh; width:40vw">
+  <canvas id="chart6"></canvas>
+    </div>
+</div>
+<div class="row">
+      <div class="chart-container" style="position:relative;top:100px;height:20vh; width:40vw">
+  <canvas id="chart7"></canvas>
+      </div>
+        <div class="chart-container" style="position:relative;top:100px;left:650px;height:20vh; width:40vw">
+  <canvas id="chart8"></canvas>
+        </div>
+</div>
+<div class="row">
+          <div class="chart-container" style="position:relative;top:100px;height:20vh; width:40vw">
+  <canvas id="chart9"></canvas>
+          </div>
+</div>
+<script>
+$(document).ready(function(){
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [{% for x in dest1%}'{{x.Activity}}',{%endfor%}],
+        datasets: [{
+            label: 'Income vs Activity',
+            data: [{% for x in dest1%}'{{x.Income}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart2");
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            data: [{% for x in list1%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgb(255, 99, 132,0.2)",
+                 "rgb(255, 159, 64,0.2)",
+                "rgb(255, 205, 86,0.2)",
+                "rgb(75, 192, 192,0.2)",
+                "rgb(54, 162, 235,0.2)",
+                "rgb(153, 102, 255,0.2)",
+                "rgb(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgb(255, 159, 64,1)",
+                "rgb(255, 205, 86,1)",
+                "rgb(75, 192, 192,1)",
+                "rgb(54, 162, 235,1)",
+                "rgb(153, 102, 255,1)",
+                "rgb(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart3").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Tailoring vs Month',
+            data: [{% for x in lact0%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart4").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Handicraft vs Month',
+            data: [{% for x in lact1%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart5").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Handlooms vs Month',
+            data: [{% for x in lact2%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart6").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Agriculture vs Month',
+            data: [{% for x in lact3%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart7").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Diary Activities vs Month',
+            data: [{% for x in lact4%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart8").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Food Processing vs Month',
+            data: [{% for x in lact5%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:false
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("chart9").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+            label: 'Others vs Month',
+            data: [{% for x in lact6%}'{{x}}',{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                "rgba(255, 99, 132,0.2)",
+                 "rgba(255, 159, 64,0.2)",
+                "rgba(255, 205, 86,0.2)",
+                "rgba(75, 192, 192,0.2)",
+                "rgba(54, 162, 235,0.2)",
+                "rgba(153, 102, 255,0.2)",
+                "rgba(201, 203, 207,0.2)"
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                "rgba(255, 159, 64,1)",
+                "rgba(255, 205, 86,1)",
+                "rgba(75, 192, 192,1)",
+                "rgba(54, 162, 235,1)",
+                "rgba(153, 102, 255,1)",
+                "rgba(201, 203, 207,1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:false
+                }
+            }]
+        }
+    }
+});
+
+});
+</script>
+
+{% endblock scripts %}
+
+{% block content %}
+
+{% endblock content %}

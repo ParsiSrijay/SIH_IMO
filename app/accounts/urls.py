@@ -12,4 +12,8 @@ urlpatterns = [
     path('iedisp',views.IandEDisplay,name="iande"),
     path('balsheet',views.BalanceSheet,name="bs"),
     path('cashAcc',views.CashAccountDisp,name="cs"),
+    path('accounts',views.allAcc,name="Accounts"),
+    path('RandP',views.RandPDisplay,name="randp"),
+    path('IandE',views.IandEDisplay,name="iande"),
+    path('Bals',views.BalSheetDisp,name="balsheet")
 ]

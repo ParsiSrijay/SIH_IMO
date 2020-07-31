@@ -38,10 +38,10 @@
                     <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/acc/"><i class="fas fa-business-time"></i>Financial Position</a>
                 </li>
                 <li class="nav-item" style="float:right">
-                    <a class="nav-brand navbar-logo" href="#"><i class="far fa-chart-bar"></i>Statistics</a>
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/stats/income_generating"><i class="far fa-chart-bar"></i>Statistics</a>
                 </li>
                 <li class="nav-item" style="float:right">
-                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/"><i class="far fa-user-circle"></i>Logout</a>
+                    <a class="nav-brand navbar-logo" href="http://127.0.0.1:8000/logout"><i class="far fa-user-circle"></i>Logout</a>
                 </li>
 
             </ul>
@@ -49,12 +49,12 @@
         <div class="container">
         <br/>
   <h2 style="text-align:center">APPROVE SHG LOAN<h6 style="text-align:right;color:red">* are mandatory</h6></h2>
-
+            {%if content%}
             <div class="alert alert-info alert-dismissible">
                 <!--<a href="#" class="close" data-dismiss="alert" aria-label="close" >&times;</a>-->
                 <h5><span id="test" ><b>{{content}}</b></span></h5>
             </div>
-
+            {%endif%}
   <form action="" method="POST" >
     {% csrf_token %}
       <table class="table table-borderless">
@@ -102,6 +102,12 @@
                     <option>No</option>
                 </select>
               </td>
+        </tr>
+          <tr>
+              <td><label>Email Address <b><span style="color:red"> </span></b> :  </label>
+                <input type="email" class="form-control" placeholder="" value="" name="email"/></td>
+              <td><label>Phone Number <b><span style="color:red">* </span></b> :  </label>
+                <input type="number" class="form-control" placeholder="" value="" name="phno" required/></td>
         </tr>
       </table>
       <div class="text-center">

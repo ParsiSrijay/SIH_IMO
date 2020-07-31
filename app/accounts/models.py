@@ -31,3 +31,10 @@ class Payments(models.Model):
     Micellaneous=models.IntegerField()
     Closingbal=models.IntegerField()
     RegIMO=models.CharField(max_length=10,default="")
+
+class Account(models.Model):
+    Field=models.CharField(max_length=15)
+    RandP=models.CharField(max_length=10)
+    IandE=models.CharField(max_length=10)
+    BalSheet=models.CharField(max_length=10)
+    Amount=models.IntegerField(default=0)
